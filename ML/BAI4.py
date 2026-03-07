@@ -1,0 +1,13 @@
+import pandas as pd
+df = pd.read_csv("titanic.csv")
+print("Kich thuoc dataset ban dau:", df.shape)
+print("Cot co du lieu thieu:")
+print(df.isnull().any())
+print("So luong gia tri null moi cot:")
+print(df.isnull().sum())
+df["Age"].fillna(df["Age"].mean(), inplace=True)
+print("dien tuoi thieu bang tuoi trung binh")
+print("So null sau khi xu ly tuoi:")
+print(df.isnull().sum())
+df = df.dropna()
+print("Kich thuoc dataset sau khi xoa:", df.shape)

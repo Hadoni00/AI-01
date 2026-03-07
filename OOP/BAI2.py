@@ -7,4 +7,11 @@ name = name.strip()
 words = name.split()
 words = [w.capitalize() for w in words]
 
-print(" ".join(words))
+print(f"Ho: {words[0]}")
+
+print("Ten dem:", end=" ")
+for i in range(1, len(words)-1):
+    print(words[i], end=" ")
+
+print()
+print(f"Ten: {words[-1]}")

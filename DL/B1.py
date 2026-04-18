@@ -7,7 +7,7 @@ import pandas as pd
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 print("Using:", device)
 # ===== data =====
-def create_data(n_samples=1000):
+def create_data(n_samples=10000):
     X = torch.rand(n_samples, 4) * 10 
     y = (X[:, 0] * 2 + X[:, 1] * 1.5 + X[:, 2] * 3 + X[:, 3] * 5 + 5)
     return X, y.view(-1, 1)
@@ -47,3 +47,14 @@ with torch.no_grad():
     test_input = torch.tensor([[5.0, 3.0, 4.0, 2.0]]).to(device)
     predicted_time = model(test_input)
     print(f'\nDự đoán: {predicted_time.item():.2f} phút')
+# Khi nào nên dùng GPU?
+# ✔️ NÊN:
+# Deep Learning (CNN, RNN, Transformer)
+# Dataset lớn (10k+ samples trở lên)
+# Model nhiều layer / nhiều neuron
+# Training lâu (epoch nhiều)
+# ❌ KHÔNG NÊN:
+# Data nhỏ (vài nghìn dòng đổ xuống)
+# Model đơn giản (linear regression kiểu này luôn)
+# Chạy test nhanh/debug
+# Máy yếu GPU (copy qua lại còn chậm hơn CPU)
